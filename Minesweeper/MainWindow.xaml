@@ -1,0 +1,23 @@
+﻿<Window x:Class="Minesweeper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Minesweeper"
+        mc:Ignorable="d"
+        Title="Minesweeper" Height="530.392" Width="405.392">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="482*"/>
+            <ColumnDefinition Width="113*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label" Content="Mines Remaining" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="minesRemainingLabel" Content="X" HorizontalAlignment="Left" Margin="111,10,0,0" VerticalAlignment="Top"/>
+        <Grid HorizontalAlignment="Left" Height="460" Margin="0,36,0,0" VerticalAlignment="Top" Width="392" x:Name="theGrid" Grid.ColumnSpan="2">
+
+
+        </Grid>
+        <Button x:Name="newGameButton" Content="New Game" HorizontalAlignment="Left" Margin="303,13,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="newGameButton_Click"/>
+
+    </Grid>
+</Window>
