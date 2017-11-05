@@ -20,4 +20,5 @@
         <Button x:Name="newGameButton" Content="New Game" HorizontalAlignment="Left" Margin="303,13,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="newGameButton_Click"/>
 
     </Grid>
+    
 </Window>

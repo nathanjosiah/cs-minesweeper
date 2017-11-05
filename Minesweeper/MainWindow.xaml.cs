@@ -65,22 +65,75 @@ namespace Minesweeper
                     MineButton button = new MineButton();
                     button.setRow(cell.row);
                     button.setColumn(cell.column);
+                    BitmapImage bmp = new BitmapImage(new Uri(@"pack://application:,,,/minesweeper_tiles.jpg", UriKind.Absolute));
+                    ImageBrush brush = new ImageBrush(bmp);
+                    brush.TileMode = TileMode.Tile;
+                    brush.Stretch = Stretch.Fill;
+
                     if (cell.touched || game.isGameover())
                     {
                         if (cell.mine)
                         {
-                            button.Content = "M";
+                            Label label = new Label();
+                            brush.Viewbox = new Rect(0.5, 0, 0.25, 0.333);
+                            label.Background = brush;
+                            label.HorizontalContentAlignment = HorizontalAlignment.Center;
+                            label.VerticalContentAlignment = VerticalAlignment.Center;
+                            Grid.SetColumnSpan(label, 1);
+                            Grid.SetColumn(label, cell.column);
+                            Grid.SetRowSpan(label, 1);
+                            Grid.SetRow(label, cell.row);
+                            theGrid.Children.Add(label);
+                            continue;
                         }
                         else if (cell.n == 0)
                         {
+                            Label label = new Label();
+                            brush.Viewbox = new Rect(0.75, 0, 0.25, 0.333);
+                            label.Background = brush;
+                            label.HorizontalContentAlignment = HorizontalAlignment.Center;
+                            label.VerticalContentAlignment = VerticalAlignment.Center;
+                            Grid.SetColumnSpan(label, 1);
+                            Grid.SetColumn(label, cell.column);
+                            Grid.SetRowSpan(label, 1);
+                            Grid.SetRow(label, cell.row);
+                            theGrid.Children.Add(label);
                             continue;
                         }
                         else
                         {
+                            switch(cell.n)
+                            {
+                                case (1):
+                                    brush.Viewbox = new Rect(0, 0.333, 0.25, 0.333);
+                                    break;
+                                case (2):
+                                    brush.Viewbox = new Rect(0.25, 0.333, 0.25, 0.333);
+                                    break;
+                                case (3):
+                                    brush.Viewbox = new Rect(0.5, 0.333, 0.25, 0.333);
+                                    break;
+                                case (4):
+                                    brush.Viewbox = new Rect(0.75, 0.333, 0.25, 0.333);
+                                    break;
+                                case (5):
+                                    brush.Viewbox = new Rect(0, 0.333, 0.25, 0.333);
+                                    break;
+                                case (6):
+                                    brush.Viewbox = new Rect(0.25, 0.666, 0.25, 0.333);
+                                    break;
+                                case (7):
+                                    brush.Viewbox = new Rect(0.5, 0.666, 0.25, 0.333);
+                                    break;
+                                case (8):
+                                    brush.Viewbox = new Rect(0.75, 0.666, 0.25, 0.333);
+                                    break;
+                            }
+                            
                             Label label = new Label();
+                            label.Background = brush;
                             label.HorizontalContentAlignment = HorizontalAlignment.Center;
                             label.VerticalContentAlignment = VerticalAlignment.Center;
-                            label.Content = cell.n;
                             Grid.SetColumnSpan(label, 1);
                             Grid.SetColumn(label, cell.column);
                             Grid.SetRowSpan(label, 1);
@@ -91,13 +144,18 @@ namespace Minesweeper
                     }
                     else if(cell.flagged)
                     {
-                        button.Content = "F";
+                        brush.Viewbox = new Rect(0.25, 0, 0.25, 0.333);
+                    }
+                    else
+                    {
+                        brush.Viewbox = new Rect(0, 0, 0.25, 0.333);
                     }
 
                     Grid.SetColumnSpan(button, 1);
                     Grid.SetColumn(button, cell.column);
                     Grid.SetRowSpan(button, 1);
                     Grid.SetRow(button, cell.row);
+                    button.Background = brush;
                     theGrid.Children.Add(button);
 
                     button.MouseDown += new MouseButtonEventHandler(gridButtonRightClicked);
